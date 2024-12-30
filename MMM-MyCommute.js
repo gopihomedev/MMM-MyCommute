@@ -426,6 +426,7 @@ Module.register("MMM-MyCommute", {
 	buildTransitSummary: function(transitInfo, summaryContainer) {
 
 		for (let i = 0; i < transitInfo.length; i++) {
+			console.log("transitInfo[i] ===>", transitInfo[i]);
 			const transitLeg = document.createElement("span");
 			transitLeg.classList.add("transit-leg");
 			transitLeg.appendChild(this.svgIconFactory(this.symbols[transitInfo[i].vehicle.toLowerCase()]));
