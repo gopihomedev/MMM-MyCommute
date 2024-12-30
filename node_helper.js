@@ -49,14 +49,15 @@ module.exports = NodeHelper.create({
 							const r = data.routes[i];
 							const routeObj = new Object({
 								summary: r.summary,
-								time: r.legs[0].duration.value
+								time: r.legs[0].duration.value,
+								distance: r.legs[0].distance.text
 							});
 
 							if (r.legs[0].duration_in_traffic) {
 								routeObj.timeInTraffic = r.legs[0].duration_in_traffic.value;
 							}
 							if(r.legs[0].distance) {
-								routeObj.distance = r.legs[0].distance.value;
+								routeObj.distance = r.legs[0].distance.text;
 							}
 							if (dest.config.mode && dest.config.mode === "transit") {
 								const transitInfo = [];
