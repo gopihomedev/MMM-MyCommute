@@ -374,7 +374,7 @@ Module.register("MMM-MyCommute", {
 		return(svg);
 	},
 
-	formatTime: function(time, timeInTraffic) {
+	formatTime: function(time, timeInTraffic, distance) {
 		const timeEl = document.createElement("span");
 		timeEl.classList.add("travel-time");
 		let now = moment();
@@ -404,6 +404,7 @@ Module.register("MMM-MyCommute", {
 			}
 			timeEl.classList.add("status-good");
 		}
+		timeEl.innerHTML = distance +" - " + timeEl.innerHTML
 		return timeEl;
 	},
 
@@ -517,11 +518,11 @@ Module.register("MMM-MyCommute", {
 					} else {
 						singleSummary.innerHTML = r.summary;
 					}
-					singleSummary.appendChild(this.formatTime(r.time, r.timeInTraffic));
+					singleSummary.appendChild(this.formatTime(r.time, r.timeInTraffic, r.distance));
 					row.appendChild(singleSummary);
 				}
 				else {
-					row.appendChild(this.formatTime(r.time, r.timeInTraffic));
+					row.appendChild(this.formatTime(r.time, r.timeInTraffic, r.distance));
 				}
 			} else {
 				row.classList.add("with-multiple-routes");
@@ -539,7 +540,7 @@ Module.register("MMM-MyCommute", {
 						multiSummary.innerHTML = r.summary;
 					}
 					routeSummaryOuter.appendChild(multiSummary);
-					routeSummaryOuter.appendChild(this.formatTime(r.time, r.timeInTraffic));
+					routeSummaryOuter.appendChild(this.formatTime(r.time, r.timeInTraffic, r.distance));
 					row.appendChild(routeSummaryOuter);
 				}
 			}
